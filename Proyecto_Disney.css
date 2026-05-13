@@ -1,0 +1,686 @@
+:root {
+    --bg-color: #1a1d29;
+    --card-bg: #2a2d3a;
+    --accent-color: #0063e5;
+    --accent-blue: #0063e5;
+    --text-color: #f9f9f9;
+    --text-white: #f9f9f9;
+    --text-gray: #a8a9ad;
+}
+
+body {
+    margin: 0;
+    font-family: 'Avenir-Next', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #f9f9f9;
+    
+    /* Collage de pósteres con filtro oscuro para legibilidad */
+    background-image: 
+        linear-gradient(to bottom, rgba(26, 29, 41, 0.3)0%, rgba(26, 29, 41, 0.6) 100%), 
+        url('https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/2B60E1BCF7D3695180878E4ED1DCE540CE82D8B1897056748C98D4896B57CDE7/compose?format=webp&width=2560');
+background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* 2. CENTRADO DEL LOGIN (Efecto "En el medio") */
+#login-section {
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center;     /* Centrado vertical */
+    min-height: 100vh;       /* Ocupa toda la pantalla */
+    width: 100%;
+}
+
+/* Fondo con degradado radial para dar profundidad */
+.background-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, rgba(26,29,41,0.7) 0%, rgba(10,11,15,1) 100%);
+    z-index: -1;
+}
+/* 2. CONTENEDOR DE LOGIN (Centrado y ajustado) */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+/* 3. TARJETA DE LOGIN CON MÁS ESPACIO (GAP) */
+.auth-card {
+    display: flex;
+    flex-direction: column; /* Logo arriba, inputs debajo */
+    align-items: center;
+    width: 100%;
+    max-width: 380px; /* Tamaño equilibrado para evitar scroll */
+    padding: 20px;
+    background: transparent;
+}
+
+/* 3. LOGO Y TEXTOS */
+.logo {
+    font-size: 3rem;
+    letter-spacing: 6px;
+    margin-bottom: 40px; /* Espacio entre logo y formulario */
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.logo span { color: var(--accent-blue); }
+
+.helper-text {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #a8a9ad;
+}
+/* ESPACIADO ENTRE INPUTS */
+input {
+    width: 100%;
+    padding: 18px;    /* Inputs más altos y cómodos */
+    margin-bottom: 20px; /* Espacio generoso entre el email y la contraseña */
+    border: none;
+    border-radius: 4px;
+    background: #31343e;
+    color: white;
+    font-size: 1rem;
+}
+
+/* ESPACIADO DEL BOTÓN */
+.btn-primary {
+    width: 100%;
+    padding: 18px;
+    margin-top: 15px; /* Separación del último input */
+    background-color: #0063e5;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #0483ee;
+    transform: scale(1.02);
+}
+
+/* Mantenemos el resto de tus estilos (perfiles, dashboard) sin cambios */
+
+/* Selección de Perfiles */
+.profile-container {
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.profile-grid {
+    display: flex;
+    gap: 30px;
+    margin: 70px 0 45px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-size: cover;
+    border: 4px solid transparent;
+    transition: transform 0.3s, border-color 0.3s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    background-color: #31343e;
+}
+
+.profile-item:hover .avatar {
+    transform: scale(1.1);
+    border-color: var(--text-color);
+}
+
+.profile-item span {
+    display: block;
+    margin-top: 15px;
+    color: #a8a9ad;
+}
+.profile-container h1 {
+    font-size: 2.5rem;          /* Tamaño grande y legible */
+    font-weight: 500;           /* Grosor medio, no muy pesado */
+    color: var(--text-white);   /* Blanco oficial */
+    margin-top: 80px;           /* EMPUJA EL TÍTULO HACIA ABAJO */
+    margin-bottom: 50px;        /* Espacio respecto a los avatares */
+    letter-spacing: 1px;        /* Un poco de aire entre letras */
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Sombra suave para resaltar sobre el collage */
+}
+
+.hidden { display: none; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* Utilidades de visibilidad */
+.hidden { display: none !important; }
+
+/* Estilos Dashboard */
+.dashboard {
+    width: 100%;
+    animation: fadeIn 0.5s ease;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(105, 99, 99, 0.315);
+}
+
+.top-genres-section {
+    width: min(760px, calc(100% - 40px));
+    margin: 24px auto 10px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.genre-box {
+    background: rgba(42, 45, 58, 0.88);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 0;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+    overflow: hidden;
+}
+
+.genre-toggle {
+    width: 100%;
+    min-height: 72px;
+    padding: 18px;
+    border: 0;
+    background: transparent;
+    color: #f9f9f9;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font: inherit;
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background 0.25s ease;
+}
+
+.genre-toggle:hover,
+.genre-box.open .genre-toggle {
+    background: rgba(255,255,255,0.08);
+}
+
+.genre-arrow {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(0, 99, 229, 0.9);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.genre-box.open .genre-arrow {
+    transform: rotate(45deg);
+    background: #0483ee;
+}
+
+.genre-list {
+    list-style: none;
+    margin: 0;
+    padding: 0 18px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    transition: max-height 0.3s ease, opacity 0.25s ease, padding 0.3s ease;
+}
+
+.genre-box.open .genre-list {
+    max-height: 220px;
+    opacity: 1;
+    padding: 0 18px 18px;
+}
+
+.genre-list li {
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 999px;
+    color: #8cc8ff;
+    font-size: 0.86rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.genre-list li:hover,
+.genre-list li.active {
+    background: #0063e5;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.brand-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 700px) {
+    .top-genres-section {
+        grid-template-columns: 1fr;
+    }
+
+    .genre-toggle {
+        font-size: 1.1rem;
+    }
+}
+
+/* Títulos de marcas (MARVEL, STAR WARS, etc) */
+.brand-card {
+    width: 220px;
+    height: 120px;
+    border: 2px solid #3f424e;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Fuente impactante */
+    font-size: 1.6rem; /* Más grande */
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #f9f9f9;
+    text-transform: uppercase;
+    
+    background: linear-gradient(145deg, #30333e, #1a1d29);
+    box-shadow: inset 0 0 25px rgba(255,255,255,0.03), 0 12px 25px rgba(0,0,0,0.25);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.brand-card:nth-child(1) {
+    background: linear-gradient(145deg, #b10510, #390005);
+}
+
+.brand-card:nth-child(2) {
+    background: linear-gradient(145deg, #1f8fd6, #124061);
+}
+
+.brand-card:nth-child(3) {
+    background: linear-gradient(145deg, #111111, #3b2b05);
+    color: #ffe27a;
+}
+
+.brand-card:nth-child(4) {
+    background: linear-gradient(145deg, #f5c400, #1b1b1b);
+}
+
+.brand-card:nth-child(5) {
+    background: linear-gradient(145deg, #3f424e, #151722);
+}
+
+.brand-card:hover {
+    transform: translateY(-6px) scale(1.04);
+    border-color: #f9f9f9;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+}
+
+/* Título de la categoría actual */
+#category-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 40px 0 20px 50px;
+    color: #f9f9f9;
+}
+
+/* Cuadrícula de películas automática[cite: 1] */
+.movie-list {
+    display: grid;
+    /* auto-fill crea tantas columnas como quepan de 220px[cite: 1] */
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); 
+    gap: 34px 28px;
+    padding: 20px 50px;
+    justify-items: center; /* Centra las carátulas[cite: 1] */
+}
+
+.movie-tile {
+    width: 260px;
+    cursor: pointer;
+}
+
+.movie-card {
+    width: 260px;
+    height: 390px;
+    background-color: #2a2d3a;
+    cursor: pointer;
+    border-radius: 8px;
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s, box-shadow 0.3s;
+    border: 3px solid transparent;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+}
+
+.movie-card:hover {
+    transform: scale(1.06);
+    border-color: #f9f9f9;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+}
+
+.movie-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent 55%);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.movie-card:hover::after {
+    opacity: 1;
+}
+
+.movie-hover {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 2;
+    padding: 10px 12px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.92);
+    color: #111;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.movie-tile:hover .movie-hover {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.movie-title {
+    margin: 14px 0 0;
+    color: #f9f9f9;
+    font-size: 1rem;
+    font-weight: 650;
+    line-height: 1.25;
+    text-align: center;
+    min-height: 2.5em;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+}
+/* Botón secundario estilizado */
+.btn-secondary {
+    margin-top: 50px;
+    padding: 12px 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--text-gray);
+    color: var(--text-white);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--text-white);
+}
+
+/* Estado activo del botón (cuando estamos editando) */
+.btn-secondary.active {
+    background-color: var(--text-white);
+    color: black;
+}
+/* Efecto en los perfiles durante la edición */
+.editing .avatar {
+    filter: brightness(0.5); /* Oscurece la foto */
+    position: relative;
+}
+
+/* Icono de lápiz (usando un pseudo-elemento) */
+.editing .avatar::after {
+    content: '✎';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    color: white;
+    text-shadow: 0 0 10px rgba(0,0,0,0.8);
+}
+/* Estilos del Modal */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: #1a1d29;
+    padding: 40px;
+    border-radius: 8px;
+    text-align: center;
+    width: 400px;
+    position: relative;
+}
+
+.avatar-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.option-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid transparent;
+    object-fit: cover;
+}
+
+.option-img.selected { border-color: var(--accent-blue); }
+
+/* Lógica para quitar el "+" cuando hay imagen */
+.avatar {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Solo mostramos el "+" si el elemento tiene la clase 'empty' */
+.avatar.empty::before {
+    content: '+';
+}
+
+.avatar:not(.empty)::before {
+    display: none; /* Quita el + si ya no es 'empty' */
+}
+#modalreg {
+    position: fixed; /* Esto evita que mueva el resto de elementos */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Asegura que esté por encima de todo */
+}
+
+/* Para que la clase hidden funcione sin mover nada */
+.hidden {
+    display: none !important;
+}
+/* Esto mantendrá la posición y añadirá el puntero */
+.close-btn {
+    cursor: pointer;           /* Añade la mano al pasar el ratón */
+    position: absolute;        /* Se posiciona respecto al modal-content */
+    top: 18px;                  /* Distancia desde arriba */
+    right: 22px;                /* Distancia desde la derecha */
+    font-size: 28px;           /* Tamaño de la X */
+    line-height: 1;            /* Evita que el cuadro de la X sea más grande de lo necesario */
+    color: #a0a0a0;            /* Color grisáceo inicial */
+    transition: color 0.3s;    /* Suaviza el cambio de color */
+}
+
+/* Efecto visual al pasar el ratón */
+.close-btn:hover {
+    color: white;              /* Se ilumina en blanco al poner el cursor */
+}
+#movie-details {
+    padding: 50px;
+    background: linear-gradient(90deg, rgba(26,29,41,1) 0%, rgba(26,29,41,0.88) 48%, rgba(26,29,41,0.45) 100%), var(--details-bg, #1a1d29);
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+
+.details-container {
+    display: flex;
+    gap: 40px;
+    margin-top: 45px;
+    align-items: center;
+}
+
+.video-placeholder {
+    flex: 2;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.info-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info-content h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    line-height: 1.05;
+}
+
+.tag {
+    background: #31343e;
+    padding: 5px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    width: fit-content;
+    margin-bottom: 20px;
+}
+
+#player {
+    width: 100%;
+    height: 100%; /* O el tamaño fijo que ya tenías en .video-placeholder */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    border-radius: 8px;
+    overflow: hidden; /* Importante para que el video no se salga de las esquinas redondeadas */
+}
+
+.play-icon {
+    font-size: 80px;
+    color: white;
+    transition: transform 0.2s ease;
+}
+
+.play-icon:hover {
+    transform: scale(1.1);
+}
+/* Botón X para la pantalla de detalles */
+.close-btn-detalles {
+    position: absolute;
+    top: 20px;
+    right: 130px;
+    font-size: 40px;
+    color: #ffffff;
+    cursor: pointer; /* Indispensable para que parezca un botón */
+    z-index: 100;    /* Para que esté por encima de todo */
+    transition: transform 0.2s, color 0.2s;
+}
+
+.close-btn-detalles:hover {
+    color: #e50914; /* Color rojo al pasar el ratón (estilo Netflix/Disney+) */
+    transform: scale(1.2);
+}
+@media (max-width: 900px) {
+    body {
+        align-items: flex-start;
+    }
+
+    .movie-list {
+        grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+        padding: 18px 22px;
+    }
+
+    .movie-tile {
+        width: 190px;
+    }
+
+    .movie-card {
+        width: 190px;
+        height: 285px;
+    }
+
+    .details-container {
+        flex-direction: column;
+    }
+
+    .info-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .brand-card {
+        width: 170px;
+        height: 95px;
+        font-size: 1.1rem;
+    }
+}

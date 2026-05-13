@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disney+ - Streaming</title>
+    <link rel="stylesheet" href="CSS/Proyecto_Disney.css">
+</head>
+<body>
+
+    <div class="background-overlay"></div>
+
+    <main class="main-container">
+        <!-- SECCIÓN 1: LOGIN -->
+  <section id="login-section" class="auth-card">
+    <h1 class="logo">Stream<span>+</span></h1>
+    <form id="login-form">
+        <input type="email" id="email-input" placeholder="Correo electrónico" required>
+        <input type="password" id="pass-input" placeholder="Contraseña" required>
+        <button type="submit" class="btn-primary">Continuar</button>
+    </form>
+    <!-- Solo añadimos el id al enlace -->
+    <p class="helper-text">¿Nuevo en Disney+? <a href="#" id="link-suscribete">Suscríbete ahora</a></p>
+</section>
+
+<!-- ESTO PONLO AL FINAL DE TU HTML, ANTES DE </BODY> -->
+<div id="modalreg" class="modal hidden">
+    <div class="modal-content">
+        <span id="cerrar-reg" class="close-btn">&times;</span>
+        <h2>Crea tu cuenta</h2>
+        <form id="form-registro">
+            <input type="email" placeholder="Correo electrónico" required>
+            <input type="password" placeholder="Contraseña" required>
+            <button type="submit" class="btn-primary">Registrarse</button>
+        </form>
+    </div>
+</div>
+
+        
+
+        <!-- SECCIÓN 2: SELECCIÓN DE PERFILES -->
+        <section id="profile-section" class="profile-container hidden">
+            <h1>¿Quién está viendo ahora?</h1>
+            <div class="profile-grid">
+                <div class="profile-item">
+                    <div class="avatar" style="background-image: url('imagenes/user1.avif');"></div>
+                    <span>Admin</span>
+                </div>
+                <div class="profile-item">
+                    <div class="avatar" style="background-image: url('imagenes/aventura.jpg');"></div>
+                    <span>Aventura</span>
+                </div>
+                <div class="profile-item">
+                    <div class="avatar" style="background-image: url('imagenes/stich.jfif');"></div>
+                    <span>Kids</span>
+                </div>
+                <div class="profile-item add-profile">
+                    <div class="avatar">+</div>
+                    <span>Añadir</span>
+                </div>
+                 <div class="profile-item add-profile">
+                    <div class="avatar">+</div>
+                    <span>Añadir</span>
+                </div>
+            </div>
+            <button class="btn-secondary">Editar perfiles</button>
+        </section>
+
+        <!-- SECCIÓN 3: DASHBOARD (CATÁLOGO) -->
+        <section id="dashboard-section" class="dashboard hidden">
+            <nav class="navbar">
+                <h2 class="logo-small">Stream<span>+</span></h2>
+                <div class="user-info">
+                    <span id="active-user-name"></span>
+                </div>
+            </nav>
+
+            <div class="top-genres-section">
+                <div class="genre-box" data-genero-box>
+                    <button class="genre-toggle" type="button" aria-expanded="false">
+                        <span>Peliculas</span>
+                        <span class="genre-arrow">+</span>
+                    </button>
+                    <ul class="genre-list">
+                        <li data-tipo="pelicula" data-genero="Accion">Accion</li>
+                        <li data-tipo="pelicula" data-genero="Animacion">Animacion</li>
+                        <li data-tipo="pelicula" data-genero="Ciencia ficcion">Ciencia ficcion</li>
+                        <li data-tipo="pelicula" data-genero="Aventura">Aventura</li>
+                        <li data-tipo="pelicula" data-genero="Superheroes">Superheroes</li>
+                        <li data-tipo="pelicula" data-genero="Documental">Documental</li>
+                    </ul>
+                </div>
+                <div class="genre-box" data-genero-box>
+                    <button class="genre-toggle" type="button" aria-expanded="false">
+                        <span>Series</span>
+                        <span class="genre-arrow">+</span>
+                    </button>
+                    <ul class="genre-list">
+                        <li data-tipo="serie" data-genero="Aventura">Aventura</li>
+                        <li data-tipo="serie" data-genero="Ciencia ficcion">Ciencia ficcion</li>
+                        <li data-tipo="serie" data-genero="Documental">Documental</li>
+                        <li data-tipo="serie" data-genero="Animacion">Animacion</li>
+                        <li data-tipo="serie" data-genero="Comedia">Comedia</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Brand Tiles del Plan -->
+            <div class="brand-grid">
+                <div class="brand-card" onclick="filtrar('MARVEL')">MARVEL</div>
+                <div class="brand-card" onclick="filtrar('PIXAR')">PIXAR</div>
+                <div class="brand-card" onclick="filtrar('STAR WARS')">STAR WARS</div>
+                <div class="brand-card" onclick="filtrar('NAT GEO')">NAT GEO</div>
+                <div class="brand-card" onclick="filtrar('')">TODO</div>
+            </div>
+
+            <div class="movie-row">
+                <h2 id="category-title">Recomendados para ti</h2>
+                <div class="movie-list" id="movie-display-grid">
+                    <!-- Las películas aparecerán aquí con JS -->
+                </div>
+            </div>
+        </section>
+        <!-- SECCIÓN 3: DETALLES DE PELÍCULA -->
+<section id="movie-details" class="hidden">
+   <span id="cerrar-detalles" class="close-btn-detalles">&times;</span>
+    
+    <button id="btn-volver" class="btn-secondary">← Volver</button>
+    <div class="details-container">
+        <div class="video-placeholder">
+            <!-- Aquí simularemos el trailer con un iframe de YouTube o una imagen grande -->
+            <div id="player"></div>
+        </div>
+        <div class="info-content">
+            <h1 id="detail-title">Título de la Película</h1>
+            <p id="detail-category" class="tag"></p>
+            <p id="detail-description">Aquí irá una descripción épica de la película para convencer al usuario de verla.</p>
+            <button class="btn-primary">Ver ahora</button>
+        </div>
+    </div>
+</section>
+    </main>
+<!-- Modal para Crear/Editar Perfil -->
+<div id="modal-perfil" class="modal hidden">
+    <div class="modal-content">
+        <h2>Crear Perfil</h2>
+        <input type="text" id="nuevo-nombre-perfil" placeholder="Nombre del perfil">
+        <p>Elige un avatar:</p>
+        <div class="avatar-options">
+            <img src="https://image.pngaaa.com/984/7583984-middle.png" class="option-img" data-img="https://image.pngaaa.com/984/7583984-middle.png">
+            <img src="imagenes/images.jfif" class="option-img" data-img="imagenes/images.jfif">
+            <img src="https://upload.wikimedia.org/wikipedia/en/4/4c/Toy_Story_4_poster.jpg" class="option-img" data-img="https://upload.wikimedia.org/wikipedia/en/4/4c/Toy_Story_4_poster.jpg">
+            <img src="https://i.pinimg.com/236x/75/25/7b/75257b7e40d1157e524f303f2f657ad4.jpg" class="option-img" data-img="https://i.pinimg.com/236x/75/25/7b/75257b7e40d1157e524f303f2f657ad4.jpg">
+        </div>
+        <div class="modal-buttons">
+            <button id="btn-cancelar" class="btn-secondary">Cancelar</button>
+            <button id="btn-guardar-perfil" class="btn-primary">Guardar</button>
+        </div>
+    </div>
+</div>
+    <script src="JS/Proyecto_disney.js"></script>
+</body>
+</html>
